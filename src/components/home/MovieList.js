@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
@@ -10,6 +10,7 @@ import Collapse from "@material-ui/core/Collapse";
 import { red } from "@material-ui/core/colors";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
+import Link from "@material-ui/core/Link";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { IMAGE_URL } from "../../Config";
@@ -57,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
 
 const MovieList = ({ movies, handleFavoritesClick }) => {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   const setVoteClass = (vote) => {
     if (vote >= 8) {
@@ -77,18 +78,15 @@ const MovieList = ({ movies, handleFavoritesClick }) => {
       {movies.map((movie, index) => (
         <Card key={index} className={classes.root}>
           <CardHeader className={classes.title} title={movie.title} />
+          <Typography>
+            <Link href={`/movie/${movie.id}`}></Link>
+          </Typography>
           <CardMedia
+            movieId={movie.id}
             className={classes.media}
             image={movie.poster_path && `${IMAGE_URL}w500${movie.poster_path}`}
             title={movie.title}
           />
-          {/* <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                This impressive paella is a perfect party dish and a fun meal to cook
-                together with your guests. Add 1 cup of frozen peas along with the
-                mussels, if you like.
-                </Typography>
-        </CardContent> */}
           <CardActions disableSpacing>
             <IconButton className={classes.fav} aria-label="add to favorites">
               <FavoriteIcon onClick={() => handleFavoritesClick(movie)} />

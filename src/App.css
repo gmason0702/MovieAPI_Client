@@ -25,6 +25,20 @@ body {
   margin-left: -1rem;
   width: 60% !important;
 }
+.search {
+  font-family: inherit;
+  font-size: 1.2rem;
+  border: 2px solid #051821;
+  margin-top: 1.5rem;
+  color: #f58800;
+  border-radius: 50px;
+  background-color: transparent;
+  padding: 0.5rem 1rem;
+}
+
+.search:focus {
+  outline: none;
+}
 
 .title {
   margin: 1rem;

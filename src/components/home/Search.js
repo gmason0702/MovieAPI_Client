@@ -35,10 +35,10 @@ const Search = () => {
 
   return (
     <>
-      <div className="col col-sm-4">
+      <div>
         <form onSubmit={handleOnSubmit}>
           <input
-            className="form-control"
+            className="search"
             type="search"
             value={query}
             onChange={handleOnChange}

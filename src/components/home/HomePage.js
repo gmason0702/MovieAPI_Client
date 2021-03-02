@@ -5,6 +5,7 @@ import AddFavorite from "../favorites/AddFavorite";
 import RemoveFavorite from "../favorites/RemoveFavorite";
 import FavHeading from "../favorites/FavHeading";
 import Search from "../home/Search";
+import Review from "../favorites/Review";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Heading from "./Heading";
@@ -36,6 +37,19 @@ const HomePage = () => {
     }
   }, []);
 
+  // //get all favorites
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/favorite/")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       data.favorites.map((fav) => (fav.isUpdating = false));
+  //       if (data.favorites) {
+  //         setFavorites(data.favorites);
+  //         console.log(data.favorites);
+  //       }
+  //     });
+  // }, []);
+
   const saveToLocalStorage = (items) => {
     localStorage.setItem("movie-radar-favorites", JSON.stringify(items));
   };
@@ -66,7 +80,7 @@ const HomePage = () => {
           <MovieList
             movies={movies}
             handleFavoritesClick={addFavoriteMovie}
-            favoriteComponent={AddFavorite}
+            // favoriteComponent={AddFavorite}
           />
         </div>
         <div>
@@ -76,9 +90,10 @@ const HomePage = () => {
           <MovieList
             movies={favorites}
             handleFavoritesClick={removeFavoriteMovie}
-            favoriteComponent={RemoveFavorite}
+            // favoriteComponent={RemoveFavorite}
           />
         </div>
+        <Review movies={favorites} />
       </div>
     </div>
   );

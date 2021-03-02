@@ -1,6 +1,7 @@
 import React from "react";
+import MovieList from "../home/HomePage";
 
-const AddFavorite = () => {
+const AddFavorite = ({ movies, favorites }) => {
   return <></>;
 };
 
