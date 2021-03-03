@@ -11,18 +11,13 @@ import Typography from "@material-ui/core/Typography";
 const Review = ({ movies }) => {
   const useStyles = makeStyles((theme) => ({
     root: {
-      width: "100%",
       maxWidth: "32ch",
       backgroundColor: theme.palette.background.paper,
       display: "inline-block",
-      overflowX: "auto!important",
-      flexWrap: "nowrap!important",
-      marginRight: 35,
+      marginRight: 40,
+      marginLeft: "0!important",
     },
-    list: {
-      overflowX: "auto!important",
-      flexWrap: "nowrap!important",
-    },
+    list: {},
     inline: {
       display: "inline",
     },
@@ -39,6 +34,7 @@ const Review = ({ movies }) => {
               <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
             </ListItemAvatar>
             <ListItemText
+              className={classes.listText}
               primary={`Review of: ${movie.title} `}
               secondary={
                 <React.Fragment>

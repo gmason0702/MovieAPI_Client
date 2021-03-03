@@ -6,6 +6,7 @@ import RemoveFavorite from "../favorites/RemoveFavorite";
 import FavHeading from "../favorites/FavHeading";
 import Search from "../home/Search";
 import Review from "../favorites/Review";
+import SideScroll from "../SideScroll";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Heading from "./Heading";
@@ -16,6 +17,9 @@ const HomePage = () => {
   const [favorites, setFavorites] = useState([]);
   // const [searchValue, setSearchValue] = useState("");
   const popular_url = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`;
+
+  const scrollRef = SideScroll();
+  const scrollRefFav = SideScroll();
 
   const getMovies = async () => {
     const response = await fetch(popular_url);
@@ -76,7 +80,7 @@ const HomePage = () => {
         <Search />
       </div>
       <div className="movie-container">
-        <div className="row">
+        <div className="row" ref={scrollRef}>
           <MovieList
             movies={movies}
             handleFavoritesClick={addFavoriteMovie}
@@ -93,7 +97,9 @@ const HomePage = () => {
             // favoriteComponent={RemoveFavorite}
           />
         </div>
-        <Review movies={favorites} />
+        <div>
+          <Review movies={favorites} />
+        </div>
       </div>
     </div>
   );

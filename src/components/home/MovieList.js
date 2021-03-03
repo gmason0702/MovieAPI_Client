@@ -14,13 +14,14 @@ import Link from "@material-ui/core/Link";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { IMAGE_URL } from "../../Config";
+import SideScroll from "../../components/SideScroll";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 300,
     minWidth: 300,
-    overflowX: "auto",
-    flexWrap: "nowrap",
+    // overflowX: "auto",
+    // flexWrap: "nowrap",
     margin: 5,
     backgroundColor: "#1a4645",
     marginBottom: 20,
@@ -60,6 +61,8 @@ const MovieList = ({ movies, handleFavoritesClick }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
 
+  const scrollRef = SideScroll();
+
   const setVoteClass = (vote) => {
     if (vote >= 8) {
       return "green";
@@ -76,7 +79,7 @@ const MovieList = ({ movies, handleFavoritesClick }) => {
   return (
     <>
       {movies.map((movie, index) => (
-        <Card key={index} className={classes.root}>
+        <Card key={index} className={classes.root} ref={scrollRef}>
           <CardHeader className={classes.title} title={movie.title} />
           <Typography>
             <Link href={`/movie/${movie.id}`}></Link>
