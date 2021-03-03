@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  Collapse,
-  NavItem,
-  Button,
-  Nav,
-  Navbar,
-} from "reactstrap";
+import { Collapse, NavItem, Button, Nav, Navbar } from "reactstrap";
 
 const NavBar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
