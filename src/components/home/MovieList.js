@@ -9,6 +9,7 @@ import CardActions from "@material-ui/core/CardActions";
 import Collapse from "@material-ui/core/Collapse";
 import { red } from "@material-ui/core/colors";
 import IconButton from "@material-ui/core/IconButton";
+import ChatIcon from "@material-ui/icons/Chat";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import FavoriteIcon from "@material-ui/icons/Favorite";

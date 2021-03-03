@@ -7,7 +7,7 @@ body {
 #root {
   background: linear-gradient(135deg, #051821 60%, #266867 100%);
   color: #f58800;
-  height: 100vh;
+  height: 200vh;
 }
 .MuiTypography-paragraph {
   margin-bottom: 0px !important;
@@ -15,6 +15,10 @@ body {
 .home-wrapper .row {
   overflow-x: auto;
   flex-wrap: nowrap;
+}
+
+.movie-container {
+  height: 100vh;
 }
 
 .header-wrapper {
