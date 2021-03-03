@@ -69,7 +69,7 @@ const HomePage = ({ logout }) => {
           title="MOVIE RADAR"
           logo={Logo}
         />
-        <Search />
+        <Search movies={movies} setMovies={setMovies} />
       </div>
       <div className="movie-container">
         <div className="row" ref={scrollRef}>

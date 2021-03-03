@@ -46,11 +46,3 @@ function App() {
 
 // Makes our Component available for import
 export default App;
-
-//display login only until user is logged in/registered...then on validation display home page
-
-//Login/Register component
-//Home component
-//Favorite component
-
-//<Login onSubmit = <Home/></Login>
