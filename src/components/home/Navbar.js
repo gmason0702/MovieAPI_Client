@@ -1,20 +1,24 @@
-import React, { useState } from "react";
-import { Collapse, NavItem, Button, Nav, Navbar } from "reactstrap";
+// import React, { useState } from "react";
+// import { Collapse, NavItem, Nav, Navbar } from "reactstrap";
+// import { Button } from "@material-ui/core";
+// import Heading from "./Heading";
 
-const NavBar = (props) => {
-  const [isOpen, setIsOpen] = useState(false);
+// const NavBar = ({ logout, title }) => {
+//   const [isOpen, setIsOpen] = useState(false);
 
-  return (
-    <Navbar color="faded" light expand="md">
-      <Collapse isOpen={isOpen} navbar>
-        <Nav className="ml-auto" navbar>
-          <NavItem>
-            <Button onClick={props.logout}>Logout</Button>
-          </NavItem>
-        </Nav>
-      </Collapse>
-    </Navbar>
-  );
-};
+//   return (
+//     <Navbar color="faded" light expand="md">
+//       <Collapse isOpen={isOpen} navbar>
+//         <Nav className="ml-auto" navbar>
+//           <NavItem>
+//             <Button onClick={logout} variant="contained">
+//               Logout
+//             </Button>
+//           </NavItem>
+//         </Nav>
+//       </Collapse>
+//     </Navbar>
+//   );
+// };
 
-export default NavBar;
+// export default NavBar;

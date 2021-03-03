@@ -1,18 +1,14 @@
-// adding css to jsx is that easy
-import "./App.css"; // This pattern is preferred where css for this component has a matching .css filename
-import { Route, Switch } from "react-router-dom";
-// A component import
-import HomePage from "./components/home/HomePage";
-import MovieDetail from "./components/home/MovieDetail";
-
-// Defining our <App /> component the function name matches the file name
-
-import "./App.css"; // This pattern is preferred where css for this component has a matching .css filename
 import React, { useEffect, useState } from "react";
+import { Route, Switch } from "react-router-dom";
+
+import "./App.css";
+
 // A component import
-import Navbar from "./components/Navbar";
+import MovieDetail from "./components/home/MovieDetail";
+import Navbar from "./components/home/Navbar";
 import SignInOutContainer from "./components/auth/indexs";
-import Homepage from "./components/Home/homepage";
+import HomePage from "./components/home/HomePage";
+import Heading from "./components/home/Heading";
 
 function App() {
   const [sessionToken, setSessionToken] = useState("");
@@ -33,7 +29,7 @@ function App() {
   };
   const protectedViews = () => {
     return sessionToken === localStorage.getItem("token") ? (
-      <Homepage token={sessionToken} />
+      <HomePage token={sessionToken} logout={clearToken} />
     ) : (
       <SignInOutContainer updateToken={updateToken} />
     );
@@ -42,10 +38,7 @@ function App() {
   // All functional components need to return jsx with one parent element
   return (
     <div className="App">
-      {" "}
-      {/* Parent Element. Also we can't use the word class, so we use className in jsx*/}
-      {/* Navbar is our imported component*/}
-      <Navbar logout={clearToken} />
+      {/* \<Heading logout={clearToken} /> */}
       {protectedViews()}
     </div>
   );
