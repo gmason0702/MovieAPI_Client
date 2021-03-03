@@ -1,14 +1,26 @@
-import "./Navbar.css";
+import React, { useState } from "react";
+import {
+  Collapse,
+  NavItem,
+  Button,
+  Nav,
+  Navbar,
+} from "reactstrap";
 
-// Function name matches file name
-const Navbar = () => {
-  // return must have one parent element
+const NavBar = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <nav>
-      <p>Nav Item</p>
-    </nav>
+    <Navbar color="faded" light expand="md">
+      <Collapse isOpen={isOpen} navbar>
+        <Nav className="ml-auto" navbar>
+          <NavItem>
+            <Button onClick={props.logout}>Logout</Button>
+          </NavItem>
+        </Nav>
+      </Collapse>
+    </Navbar>
   );
 };
 
-// Makes it available for import
-export default Navbar;
+export default NavBar;
