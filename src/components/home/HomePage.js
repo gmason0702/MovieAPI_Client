@@ -8,6 +8,8 @@ import Search from "../home/Search";
 import Review from "../favorites/Review";
 import SideScroll from "../SideScroll";
 import "bootstrap/dist/css/bootstrap.min.css";
+import ChatIcon from "@material-ui/icons/Chat";
+import AddReview from "../favorites/AddReview";
 
 import Heading from "./Heading";
 import Logo from "../../assets/logo.png";
@@ -82,6 +84,7 @@ const HomePage = ({ logout }) => {
         <div>
           <FavHeading fav="MY FAVORITES" />
         </div>
+
         <div className="row">
           <MovieList
             movies={favorites}
@@ -89,8 +92,11 @@ const HomePage = ({ logout }) => {
             // favoriteComponent={RemoveFavorite}
           />
         </div>
-        <div>
+        {/* <div>
           <Review movies={favorites} />
+        </div> */}
+        <div className="row">
+          {favorites.length > 0 ? <AddReview movies={favorites} /> : null}
         </div>
       </div>
     </div>
