@@ -4,9 +4,9 @@ import { API_KEY, API_URL } from "../../Config";
 
 let page = 1;
 
-const Search = () => {
+const Search = ({ setMovies, movies }) => {
   const [query, setQuery] = useState("");
-  const [movies, setMovies] = useState([]);
+  // const [movies, setMovies] = useState([]);
   const search_url = `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}&include_adult=false`;
 
   const getMovies = async (query) => {
