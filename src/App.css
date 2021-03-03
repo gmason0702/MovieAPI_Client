@@ -7,6 +7,7 @@ body {
 #root {
   background: linear-gradient(135deg, #051821 60%, #266867 100%);
   color: #f58800;
+  height: 100vh;
 }
 .MuiTypography-paragraph {
   margin-bottom: 0px !important;
