@@ -8,7 +8,7 @@ const Favorites = ({ movies, favorites, userFavorite }) => {
   const [favs, setFavs] = useState([]);
 
   //create favorite
-  const createFavorite = (review, rating, owner, movie) => {
+  const createFavorite = (review, rating, movie) => {
     fetch("http://localhost:3000/favorite/create", {
       method: "POST",
       headers: {
@@ -18,7 +18,6 @@ const Favorites = ({ movies, favorites, userFavorite }) => {
         favorite: {
           review: review,
           rating: rating,
-          owner: owner, //not sure
         },
       }),
     })

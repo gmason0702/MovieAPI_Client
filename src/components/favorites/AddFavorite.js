@@ -1,8 +1,8 @@
-import React from "react";
-import MovieList from "../home/MovieList";
+// import React from "react";
+// import MovieList from "../home/MovieList";
 
-const AddFavorite = ({ movies, favorites }) => {
-  return <></>;
-};
+// const AddFavorite = ({ movies, favorites }) => {
+//   return <></>;
+// };
 
-export default AddFavorite;
+// export default AddFavorite;
