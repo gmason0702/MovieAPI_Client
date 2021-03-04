@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField, Button } from "@material-ui/core/";
+import { Rating } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -10,23 +11,27 @@ const useStyles = makeStyles((theme) => ({
       marginRight: 28,
     },
     "& .MuiButton-contained": {
-      marginLeft: 80,
+      marginLeft: 75,
     },
   },
   reviewButton: {
     padding: 20,
   },
+  Rating: {
+    paddingLeft: 72,
+    marginBottom: 10,
+  },
 }));
 
-const AddReview = ({ movies, token, favorite, userFilm }) => {
+const AddReview = ({ movies, token, favorite, userFilm, id }) => {
   const classes = useStyles();
   const [value, setValue] = React.useState("");
   const [review, setReview] = useState("");
   const [rating, setRating] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event, favorite) => {
     event.preventDefault();
-    fetch(`http://localhost:3000/favorite/update/${favorite.id}`, {
+    fetch(`http://localhost:3000/favorite/update/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -43,12 +48,13 @@ const AddReview = ({ movies, token, favorite, userFilm }) => {
       .then((json) => {
         console.log(json);
         setReview("");
-        setRating("");
+        setRating(0);
       });
   };
   const handleChange = (event) => {
     console.log(event.target.value);
     setReview(event.target.value);
+    setRating(event.target.value);
   };
 
   return (
@@ -69,8 +75,17 @@ const AddReview = ({ movies, token, favorite, userFilm }) => {
               rows={4}
               placeholder={`Leave a review for ${movie.title}...`}
               variant="outlined"
-              onChange={(e) => handleChange(e)}
-              //   value={value}
+              onChange={(review) => handleChange(review)}
+              review={review}
+            />
+          </div>
+          <div className={classes.Rating}>
+            <Rating
+              name="half-rating"
+              defaultValue={2}
+              size="large"
+              onChange={(rating) => handleChange(rating)}
+              rating={rating}
             />
           </div>
           <Button
