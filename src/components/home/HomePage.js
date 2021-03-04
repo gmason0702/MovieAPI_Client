@@ -18,6 +18,8 @@ const HomePage = ({ logout, token }) => {
   const [favorites, setFavorites] = useState([]);
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
+  const [movieId, setMovieId] = useState(0);
+  const [id, setId] = useState(0);
   // const [searchValue, setSearchValue] = useState("");
   const popular_url = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`;
 
@@ -52,6 +54,7 @@ const HomePage = ({ logout, token }) => {
     const newFavoriteList = [...favorites, movie];
     setFavorites(newFavoriteList);
     saveToLocalStorage(newFavoriteList);
+    console.log({ movie });
     fetch("http://localhost:3000/favorite/create", {
       method: "POST",
       headers: {
@@ -62,6 +65,12 @@ const HomePage = ({ logout, token }) => {
         favorite: {
           review: review,
           rating: rating,
+          movieId: movie.id,
+          // movieTitle: movie.movie.title,
+          overview: movie.overview,
+          posterPath: movie.poster_path,
+          rating: movie.rating,
+          voteAverage: movie.vote_average,
         },
       }),
     })
@@ -70,6 +79,9 @@ const HomePage = ({ logout, token }) => {
         console.log(json);
         setReview("");
         setRating("");
+        setId(json.id);
+        console.log(json.id);
+        // setMovieId("");
       });
   };
 
@@ -103,6 +115,7 @@ const HomePage = ({ logout, token }) => {
 
         <div className="row">
           <MovieList
+            id={id}
             movies={favorites}
             handleFavoritesClick={removeFavoriteMovie}
           />
@@ -112,7 +125,7 @@ const HomePage = ({ logout, token }) => {
         </div> */}
         <div className="row">
           {favorites.length > 0 ? (
-            <AddReview token={token} movies={favorites} />
+            <AddReview id={id} token={token} movies={favorites} />
           ) : null}
         </div>
       </div>
