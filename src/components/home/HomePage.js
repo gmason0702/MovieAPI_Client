@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { API_KEY, API_URL } from "../../Config";
 import MovieList from "./MovieList";
-import AddFavorite from "../favorites/AddFavorite";
-import RemoveFavorite from "../favorites/RemoveFavorite";
+// import AddFavorite from "../favorites/AddFavorite";
+// import RemoveFavorite from "../favorites/RemoveFavorite";
 import FavHeading from "../favorites/FavHeading";
 import Search from "../home/Search";
-import Review from "../favorites/Review";
+// import Review from "../favorites/Review";
 import SideScroll from "../SideScroll";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ChatIcon from "@material-ui/icons/Chat";
 import AddReview from "../favorites/AddReview";
 
 import Heading from "./Heading";
 import Logo from "../../assets/logo.png";
 let page = 1;
-const HomePage = ({ logout }) => {
+const HomePage = ({ logout, token }) => {
   const [movies, setMovies] = useState([]);
   const [favorites, setFavorites] = useState([]);
+  const [review, setReview] = useState("");
+  const [rating, setRating] = useState(0);
   // const [searchValue, setSearchValue] = useState("");
   const popular_url = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`;
 
@@ -51,6 +52,25 @@ const HomePage = ({ logout }) => {
     const newFavoriteList = [...favorites, movie];
     setFavorites(newFavoriteList);
     saveToLocalStorage(newFavoriteList);
+    fetch("http://localhost:3000/favorite/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify({
+        favorite: {
+          review: review,
+          rating: rating,
+        },
+      }),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json);
+        setReview("");
+        setRating("");
+      });
   };
 
   const removeFavoriteMovie = (movie) => {
@@ -75,11 +95,7 @@ const HomePage = ({ logout }) => {
       </div>
       <div className="movie-container">
         <div className="row" ref={scrollRef}>
-          <MovieList
-            movies={movies}
-            handleFavoritesClick={addFavoriteMovie}
-            // favoriteComponent={AddFavorite}
-          />
+          <MovieList movies={movies} handleFavoritesClick={addFavoriteMovie} />
         </div>
         <div>
           <FavHeading fav="MY FAVORITES" />
@@ -89,14 +105,15 @@ const HomePage = ({ logout }) => {
           <MovieList
             movies={favorites}
             handleFavoritesClick={removeFavoriteMovie}
-            // favoriteComponent={RemoveFavorite}
           />
         </div>
         {/* <div>
           <Review movies={favorites} />
         </div> */}
         <div className="row">
-          {favorites.length > 0 ? <AddReview movies={favorites} /> : null}
+          {favorites.length > 0 ? (
+            <AddReview token={token} movies={favorites} />
+          ) : null}
         </div>
       </div>
     </div>

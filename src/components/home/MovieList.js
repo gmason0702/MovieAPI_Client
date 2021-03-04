@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
@@ -16,6 +16,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { IMAGE_URL } from "../../Config";
 import SideScroll from "../../components/SideScroll";
+import AddReview from "../../components/favorites/AddReview";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
 const MovieList = ({ movies, handleFavoritesClick }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
+  const [userFilm, setUserFilm] = useState();
 
   const scrollRef = SideScroll();
 
@@ -76,6 +78,10 @@ const MovieList = ({ movies, handleFavoritesClick }) => {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  useEffect(() => {
+    if (userFilm) setUserFilm();
+  }, []);
 
   return (
     <>
@@ -119,6 +125,7 @@ const MovieList = ({ movies, handleFavoritesClick }) => {
               </Typography>
               <br />
               <Typography paragraph>{movie.overview}</Typography>
+              {/* <AddReview /> */}
             </CardContent>
           </Collapse>
         </Card>
