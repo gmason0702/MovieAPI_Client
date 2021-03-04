@@ -1,20 +1,28 @@
-// adding css to jsx is that easy
-import './App.css'; // This pattern is preferred where css for this component has a matching .css filename
+// Require the use of Express
+require("dotenv").config();
+let express = require("express");
+let app = express();
+const sequelize = require("./db");
 
-// A component import
-import Navbar from './components/Navbar'
+let favorite = require("./controllers/favoritecontroller");
+let user = require("./controllers/usercontroller");
 
 
-// Defining our <App /> component the function name matches the file name
-function App() {
-  // All functional components need to return jsx with one parent element
-  return ( 
-    <div className="App"> {/* Parent Element. Also we can't use the word class, so we use className in jsx*/}
-      {/* Navbar is our imported component*/}
-      <Navbar />
-    </div>
-  );
-}
+sequelize.sync();
+app.use(require("./middleware/headers"));
+
+app.use(express.json());
+
+app.use("/user", user);
+
+//const validateSession = require("../middleware/validate-session");
+
+app.use("/favorite", favorite);
+
+app.listen(3000, function () {
+  console.log("App is listening on port 3000");
+});
+
 
 // Makes our Component available for import
 export default App;
