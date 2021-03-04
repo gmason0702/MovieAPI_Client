@@ -1,27 +1,48 @@
-// Require the use of Express
-require("dotenv").config();
-let express = require("express");
-let app = express();
-const sequelize = require("./db");
+import React, { useEffect, useState } from "react";
+import { Route, Switch } from "react-router-dom";
 
-let favorite = require("./controllers/favoritecontroller");
-let user = require("./controllers/usercontroller");
+import "./App.css";
 
+// A component import
+import MovieDetail from "./components/home/MovieDetail";
+import Navbar from "./components/home/Navbar";
+import SignInOutContainer from "./components/auth/indexs";
+import HomePage from "./components/home/HomePage";
+import Heading from "./components/home/Heading";
 
-sequelize.sync();
-app.use(require("./middleware/headers"));
+function App() {
+  const [sessionToken, setSessionToken] = useState("");
 
-app.use(express.json());
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setSessionToken(localStorage.getItem("token"));
+    }
+  }, []);
+  const updateToken = (newToken) => {
+    localStorage.setItem("token", newToken);
+    setSessionToken(newToken);
+    console.log(sessionToken);
+  };
+  const clearToken = () => {
+    localStorage.clear();
+    setSessionToken("");
+  };
+  const protectedViews = () => {
+    return sessionToken === localStorage.getItem("token") ? (
+      <HomePage token={sessionToken} logout={clearToken} />
+    ) : (
+      <SignInOutContainer updateToken={updateToken} />
+    );
+  };
 
-app.use("/user", user);
-
-//const validateSession = require("../middleware/validate-session");
-
-app.use("/favorite", favorite);
-
-app.listen(3000, function () {
-  console.log("App is listening on port 3000");
-});
+  // All functional components need to return jsx with one parent element
+  return (
+    <div className="App">
+      {/* \<Heading logout={clearToken} /> */}
+      {protectedViews()}
+    </div>
+  );
+}
 
 
 // Makes our Component available for import
