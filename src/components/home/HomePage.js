@@ -9,16 +9,18 @@ import Search from "../home/Search";
 import SideScroll from "../SideScroll";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AddReview from "../favorites/AddReview";
-
+import DisplayReview from "../favorites/DisplayReview";
 import Heading from "./Heading";
 import Logo from "../../assets/logo.png";
 let page = 1;
+
 const HomePage = ({ logout, token }) => {
   const [movies, setMovies] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
   const [movieId, setMovieId] = useState(0);
+
   const [id, setId] = useState(0);
   // const [searchValue, setSearchValue] = useState("");
   const popular_url = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`;
@@ -52,6 +54,7 @@ const HomePage = ({ logout, token }) => {
 
   const addFavoriteMovie = (movie) => {
     const newFavoriteList = [...favorites, movie];
+
     setFavorites(newFavoriteList);
     saveToLocalStorage(newFavoriteList);
     console.log({ movie });
@@ -64,12 +67,12 @@ const HomePage = ({ logout, token }) => {
       body: JSON.stringify({
         favorite: {
           review: review,
-          rating: rating,
+          personalRating: rating,
           movieId: movie.id,
-          // movieTitle: movie.movie.title,
+          movieTitle: movie.title,
           overview: movie.overview,
           posterPath: movie.poster_path,
-          rating: movie.rating,
+          releaseDate: movie.release_date,
           voteAverage: movie.vote_average,
         },
       }),
@@ -78,20 +81,48 @@ const HomePage = ({ logout, token }) => {
       .then((json) => {
         console.log(json);
         setReview("");
-        setRating("");
+        setRating(0);
+
         setId(json.id);
         console.log(json.id);
         // setMovieId("");
       });
   };
 
-  const removeFavoriteMovie = (movie) => {
+  const fetchFavorites = () => {
+    console.log(token);
+    fetch("http://localhost:3000/favorite/", {
+      method: "GET",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: token,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setFavorites(data);
+      });
+  };
+
+  const removeFavoriteMovie = (movie, id) => {
+    console.log(movie);
     const newFavoriteList = favorites.filter(
       (favorite) => favorite.id !== movie.id
     );
 
     setFavorites(newFavoriteList);
     saveToLocalStorage(newFavoriteList);
+
+    console.log(newFavoriteList);
+    fetch(`http://localhost:3000/favorite/delete/${movie.id}`, {
+      method: "DELETE",
+      headers: new Headers({
+        "Content-Type": "application/json",
+
+        Authorization: token,
+      }),
+    }).then(() => fetchFavorites());
   };
 
   return (
@@ -120,9 +151,7 @@ const HomePage = ({ logout, token }) => {
             handleFavoritesClick={removeFavoriteMovie}
           />
         </div>
-        {/* <div>
-          <Review movies={favorites} />
-        </div> */}
+        {/* <DisplayReview /> */}
         <div className="row">
           {favorites.length > 0 ? (
             <AddReview id={id} token={token} movies={favorites} />
