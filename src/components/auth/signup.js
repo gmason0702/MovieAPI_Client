@@ -9,7 +9,21 @@ import {
 } from "@material-ui/core";
 import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
 
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  signupButton: {
+    padding: 5,
+    marginTop: 20,
+    textAlign: "center",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+}));
 const Signup = ({ updateToken }) => {
+  const classes = useStyles();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -75,6 +89,8 @@ const Signup = ({ updateToken }) => {
             fullWidth
             label="Email"
             placeholder="Enter Email"
+            validators={["required", "isEmail"]}
+            errorMessages={["this field is required", "email is not valid"]}
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />
@@ -93,7 +109,13 @@ const Signup = ({ updateToken }) => {
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
-          <Button type="Submit" variant="contained" color="primary">
+          <Button
+            fullWidth="true"
+            className={classes.signupButton}
+            type="Submit"
+            variant="contained"
+            color="primary"
+          >
             Sign Up
           </Button>
         </form>
