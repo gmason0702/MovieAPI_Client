@@ -7,19 +7,19 @@ import APIURL from "../../helpers/environment";
 const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiTextField-root": {
-      margin: theme.spacing(2),
-      width: "31ch",
-      marginRight: 28,
+      margin: theme.spacing(3),
+      width: "19ch",
+      marginRight: 22,
     },
     "& .MuiButton-contained": {
-      marginLeft: 75,
+      marginLeft: 35,
     },
   },
   reviewButton: {
     padding: 20,
   },
   Rating: {
-    paddingLeft: 72,
+    paddingLeft: 29,
     marginBottom: 10,
   },
 }));

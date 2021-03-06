@@ -7,16 +7,26 @@ body {
 #root {
   background: linear-gradient(135deg, #051821 60%, #266867 100%);
   color: #f58800;
-  height: 200vh;
+  height: 300vh;
 }
 .MuiTypography-paragraph {
   margin-bottom: 0px !important;
+}
+.MuiTypography-body1 {
+  font-size: 10px !important;
+  font-family: inherit;
+}
+.MuiTypography-root .MuiTypography-body1 .MuiTypography-paragraph {
+  font-size: 10px;
 }
 .home-wrapper .row {
   overflow-x: auto;
   flex-wrap: nowrap;
 }
 
+.MuiTypography-h5 {
+  font-size: 1rem !important;
+}
 .movie-container {
   height: 100vh;
 }
@@ -33,7 +43,7 @@ body {
 }
 .search {
   font-family: inherit;
-  font-size: 1.2rem;
+  /* font-size: 1.2rem; */
   border: 2px solid #051821;
   margin-top: 1.5rem;
   color: #f58800;

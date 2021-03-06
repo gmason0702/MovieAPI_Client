@@ -15,26 +15,29 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { IMAGE_URL } from "../../Config";
 import SideScroll from "../../components/SideScroll";
+import "../../App.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 300,
-    minWidth: 300,
+    maxWidth: 200,
+    minWidth: 200,
     margin: 5,
     backgroundColor: "#1a4645",
     marginBottom: 20,
   },
   media: {
     textAlign: "center",
-    height: 400,
+    height: 250,
     maxHeight: 500,
     paddingTop: "56.25%", // 16:9
     margin: 10,
+    fontSize: "1rem",
   },
   fav: {
     color: red[500],
   },
   title: {
+    fontSize: "1rem",
     textAlign: "center",
   },
   expand: {
@@ -49,6 +52,9 @@ const useStyles = makeStyles((theme) => ({
     padding: 10,
     alignItems: "center",
     textAlign: "center",
+  },
+  movieTitle: {
+    fontSize: "1rem",
   },
   expandOpen: {
     transform: "rotate(180deg)",
@@ -84,7 +90,7 @@ const MovieList = ({ movies, handleFavoritesClick }) => {
       {movies.map((movie, index) => (
         <Card key={index} className={classes.root} ref={scrollRef}>
           <CardHeader className={classes.title} title={movie.title} />
-          <Typography>
+          <Typography className={classes.movieTitle}>
             <Link href={`/movie/${movie.id}`}></Link>
           </Typography>
           <CardMedia
