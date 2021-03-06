@@ -6,6 +6,8 @@ import Search from "../home/Search";
 import SideScroll from "../SideScroll";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AddReview from "../favorites/AddReview";
+import { IMAGE_URL } from "../../Config";
+
 // import DisplayReview from "../favorites/DisplayReview";
 import Heading from "./Heading";
 import Logo from "../../assets/logo.png";
@@ -33,6 +35,7 @@ const HomePage = ({ logout, token }) => {
   };
   useEffect(() => {
     getMovies();
+    fetchFavorites();
   }, []);
 
   useEffect(() => {
@@ -68,7 +71,7 @@ const HomePage = ({ logout, token }) => {
           movieId: movie.id,
           movieTitle: movie.title,
           overview: movie.overview,
-          posterPath: movie.poster_path,
+          posterPath: `${IMAGE_URL}w500${movie.poster_path}`,
           releaseDate: movie.release_date,
           voteAverage: movie.vote_average,
         },
@@ -80,14 +83,14 @@ const HomePage = ({ logout, token }) => {
         setReview("");
         setRating(0);
 
-        setId(json.id);
-        console.log(json.id);
+        setId(json.movieId);
+        console.log(json.movieId);
       });
   };
 
   const fetchFavorites = () => {
     console.log(token);
-    fetch(`${APIURL}/favorite/`, {
+    fetch(`${APIURL}/favorite/mine`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -102,7 +105,8 @@ const HomePage = ({ logout, token }) => {
   };
 
   const removeFavoriteMovie = (movie, id) => {
-    console.log(movie);
+    console.log(movie.id);
+    console.log(favorites);
     const newFavoriteList = favorites.filter(
       (favorite) => favorite.id !== movie.id
     );
@@ -142,7 +146,7 @@ const HomePage = ({ logout, token }) => {
 
         <div className="row">
           <MovieList
-            id={id}
+            id={movieId}
             movies={favorites}
             handleFavoritesClick={removeFavoriteMovie}
           />
