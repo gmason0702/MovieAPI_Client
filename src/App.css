@@ -1,3 +1,109 @@
-.App {
+body {
+  margin: 0;
+  font-family: "Muli", sans-serif;
+  background-color: #051821;
+  color: #f58800;
+}
+#root {
+  background: linear-gradient(135deg, #051821 60%, #266867 100%);
+  color: #f58800;
+  height: 200vh;
+}
+.MuiTypography-paragraph {
+  margin-bottom: 0px !important;
+}
+.home-wrapper .row {
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
+
+.movie-container {
+  height: 100vh;
+}
+
+.header-wrapper {
+  display: flex;
+  margin: 0 auto;
   text-align: center;
+}
+.form-control {
+  margin-top: 2rem;
+  margin-left: -1rem;
+  width: 60% !important;
+}
+.search {
+  font-family: inherit;
+  font-size: 1.2rem;
+  border: 2px solid #051821;
+  margin-top: 1.5rem;
+  color: #f58800;
+  border-radius: 50px;
+  background-color: transparent;
+  padding: 0.5rem 1rem;
+}
+
+.search:focus {
+  outline: none;
+}
+
+.title {
+  margin: 1rem;
+  margin-right: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.my-favorites {
+  margin: 0 auto;
+  text-align: center;
+  display: inline-block;
+  padding: 2rem;
+  margin-right: 5rem;
+}
+
+.image-container {
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.image-container:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.image-container:hover .overlay {
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  transition: 0.5s ease;
+  opacity: 0;
+  bottom: 0;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+.header {
+  font-size: 12px;
+}
+
+.tag {
+  background-color: transparent;
+  padding: 0.5rem;
+  font-weight: boldest;
+  border-radius: 5px;
+}
+
+.tag.green {
+  color: green;
+}
+.tag.orange {
+  color: orange;
+}
+.tag.red {
+  color: red;
 }
