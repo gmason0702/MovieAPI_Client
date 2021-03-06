@@ -9,6 +9,7 @@ import AddReview from "../favorites/AddReview";
 // import DisplayReview from "../favorites/DisplayReview";
 import Heading from "./Heading";
 import Logo from "../../assets/logo.png";
+import APIURL from "../../helpers/environment";
 let page = 1;
 
 const HomePage = ({ logout, token }) => {
