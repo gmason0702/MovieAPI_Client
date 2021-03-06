@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Route, Switch } from "react-router-dom";
 
 import "./App.css";
 
-// A component import
-import MovieDetail from "./components/home/MovieDetail";
-import Navbar from "./components/home/Navbar";
+//component import
 import SignInOutContainer from "./components/auth/indexs";
 import HomePage from "./components/home/HomePage";
-//import Heading from "./components/home/Heading";
+
 
 function App() {
   const [sessionToken, setSessionToken] = useState("");
@@ -35,15 +32,8 @@ function App() {
     );
   };
 
-  // All functional components need to return jsx with one parent element
-  return (
-    <div className="App">
-      {/* \<Heading logout={clearToken} /> */}
-      {protectedViews()}
-    </div>
-  );
+  return <div className="App">{protectedViews()}</div>;
 }
 
 
-// Makes our Component available for import
 export default App;

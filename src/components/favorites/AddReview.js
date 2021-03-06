@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddReview = ({ movies, token, favorite, userFilm, id }) => {
+const AddReview = ({ movies, token, favorite, id }) => {
   const classes = useStyles();
   const [value, setValue] = React.useState("");
   const [review, setReview] = useState("");
@@ -40,7 +40,7 @@ const AddReview = ({ movies, token, favorite, userFilm, id }) => {
       body: JSON.stringify({
         favorite: {
           review: review,
-          rating: rating,
+          rating: Number(rating),
         },
       }),
     })
@@ -50,11 +50,6 @@ const AddReview = ({ movies, token, favorite, userFilm, id }) => {
         setReview("");
         setRating(0);
       });
-  };
-  const handleChange = (event) => {
-    console.log(event.target.value);
-    setReview(event.target.value);
-    setRating(event.target.value);
   };
 
   return (
@@ -75,7 +70,7 @@ const AddReview = ({ movies, token, favorite, userFilm, id }) => {
               rows={4}
               placeholder={`Leave a review for ${movie.title}...`}
               variant="outlined"
-              onChange={(review) => handleChange(review)}
+              onChange={(e) => setReview(e.target.value)}
               review={review}
             />
           </div>
@@ -84,7 +79,7 @@ const AddReview = ({ movies, token, favorite, userFilm, id }) => {
               name="half-rating"
               defaultValue={2}
               size="large"
-              onChange={(rating) => handleChange(rating)}
+              onChange={(e) => setRating(e.target.value)}
               rating={rating}
             />
           </div>
