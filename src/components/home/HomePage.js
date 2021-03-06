@@ -54,7 +54,7 @@ const HomePage = ({ logout, token }) => {
     setFavorites(newFavoriteList);
     saveToLocalStorage(newFavoriteList);
     console.log({ movie });
-    fetch("http://localhost:3000/favorite/create", {
+    fetch(`${APIURL}/favorite/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -86,7 +86,7 @@ const HomePage = ({ logout, token }) => {
 
   const fetchFavorites = () => {
     console.log(token);
-    fetch("http://localhost:3000/favorite/", {
+    fetch(`${APIURL}/favorite/`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -110,7 +110,7 @@ const HomePage = ({ logout, token }) => {
     saveToLocalStorage(newFavoriteList);
 
     console.log(newFavoriteList);
-    fetch(`http://localhost:3000/favorite/delete/${movie.id}`, {
+    fetch(`${APIURL}/favorite/delete/${movie.id}`, {
       method: "DELETE",
       headers: new Headers({
         "Content-Type": "application/json",

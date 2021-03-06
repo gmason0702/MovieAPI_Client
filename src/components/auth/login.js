@@ -27,7 +27,7 @@ const Login = ({ handleChange, updateToken }) => {
 
   let handleSubmit = (event) => {
     event.preventDefault();
-    fetch("http://localhost:3000/user/login", {
+    fetch(`${APIURL}/user/login`, {
       method: "POST",
       body: JSON.stringify({ user: { email: email, password: password } }),
       headers: new Headers({

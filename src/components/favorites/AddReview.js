@@ -31,7 +31,7 @@ const AddReview = ({ movies, token, favorite, id }) => {
 
   const handleSubmit = (event, favorite) => {
     event.preventDefault();
-    fetch(`http://localhost:3000/favorite/update/${id}`, {
+    fetch(`${APIURL}/favorite/update/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
