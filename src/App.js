@@ -8,7 +8,7 @@ import MovieDetail from "./components/home/MovieDetail";
 import Navbar from "./components/home/Navbar";
 import SignInOutContainer from "./components/auth/indexs";
 import HomePage from "./components/home/HomePage";
-import Heading from "./components/home/Heading";
+//import Heading from "./components/home/Heading";
 
 function App() {
   const [sessionToken, setSessionToken] = useState("");
