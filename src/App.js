@@ -6,6 +6,7 @@ import "./App.css";
 import SignInOutContainer from "./components/auth/indexs";
 import HomePage from "./components/home/HomePage";
 
+
 function App() {
   const [sessionToken, setSessionToken] = useState("");
 
@@ -33,5 +34,6 @@ function App() {
 
   return <div className="App">{protectedViews()}</div>;
 }
+
 
 export default App;
