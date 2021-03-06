@@ -36,7 +36,7 @@ const Signup = ({ updateToken }) => {
 
   let handleSubmit = (event) => {
     event.preventDefault();
-    fetch(`${APIURL}user/signup`, {
+    fetch(`${APIURL}/user/signup`, {
       method: "POST",
       body: JSON.stringify({
         user: {
