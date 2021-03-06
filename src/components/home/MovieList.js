@@ -9,21 +9,17 @@ import CardActions from "@material-ui/core/CardActions";
 import Collapse from "@material-ui/core/Collapse";
 import { red } from "@material-ui/core/colors";
 import IconButton from "@material-ui/core/IconButton";
-import ChatIcon from "@material-ui/icons/Chat";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { IMAGE_URL } from "../../Config";
 import SideScroll from "../../components/SideScroll";
-import AddReview from "../../components/favorites/AddReview";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 300,
     minWidth: 300,
-    // overflowX: "auto",
-    // flexWrap: "nowrap",
     margin: 5,
     backgroundColor: "#1a4645",
     marginBottom: 20,
@@ -125,7 +121,6 @@ const MovieList = ({ movies, handleFavoritesClick }) => {
               </Typography>
               <br />
               <Typography paragraph>{movie.overview}</Typography>
-              {/* <AddReview /> */}
             </CardContent>
           </Collapse>
         </Card>

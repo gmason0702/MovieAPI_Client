@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { API_KEY, API_URL } from "../../Config";
 import MovieList from "./MovieList";
-// import AddFavorite from "../favorites/AddFavorite";
-// import RemoveFavorite from "../favorites/RemoveFavorite";
 import FavHeading from "../favorites/FavHeading";
 import Search from "../home/Search";
-// import Review from "../favorites/Review";
 import SideScroll from "../SideScroll";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AddReview from "../favorites/AddReview";
-import DisplayReview from "../favorites/DisplayReview";
+// import DisplayReview from "../favorites/DisplayReview";
 import Heading from "./Heading";
 import Logo from "../../assets/logo.png";
 let page = 1;
@@ -22,7 +19,6 @@ const HomePage = ({ logout, token }) => {
   const [movieId, setMovieId] = useState(0);
 
   const [id, setId] = useState(0);
-  // const [searchValue, setSearchValue] = useState("");
   const popular_url = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`;
 
   const scrollRef = SideScroll();
@@ -85,7 +81,6 @@ const HomePage = ({ logout, token }) => {
 
         setId(json.id);
         console.log(json.id);
-        // setMovieId("");
       });
   };
 
