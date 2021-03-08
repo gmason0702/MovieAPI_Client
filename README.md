@@ -16,7 +16,7 @@ npx create-react-app
 
 **Planning Document**
 [Planning Document] (https://docs.google.com/document/d/1T1YrqSkbX5JGlBEPDGBKDrIL1IYKFZDlnBStMKwnls8/edit#heading=h.4ipcvmh760xk)
-[Deployed Client]
+[Deployed Client](https://movieradar-app.herokuapp.com)
 [Deployed Server]
 <br />
 
