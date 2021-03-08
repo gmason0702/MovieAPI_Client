@@ -12,6 +12,7 @@ import { IMAGE_URL } from "../../Config";
 import Heading from "./Heading";
 import Logo from "../../assets/logo.png";
 import APIURL from "../../helpers/environment";
+import { DateRange } from "@material-ui/icons";
 let page = 1;
 
 const HomePage = ({ logout, token }) => {
@@ -83,7 +84,7 @@ const HomePage = ({ logout, token }) => {
         setReview("");
         setRating(0);
 
-        setId(json.movieId);
+        // setId(json.movieId);
         console.log(json.movieId);
         fetchFavorites();
       });
@@ -100,7 +101,11 @@ const HomePage = ({ logout, token }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log(...data);
+        data.map((element) => {
+          console.log(element.movieId);
+          setId(element.movieId);
+        });
         setFavorites(data);
       });
   };
@@ -153,8 +158,14 @@ const HomePage = ({ logout, token }) => {
         </div>
         {/* <DisplayReview /> */}
         <div className="row">
-          {favorites.length > 0 ? (
-            <AddReview id={id} token={token} movies={favorites} />
+          {favorites ? (
+            <AddReview
+              id={id}
+              token={token}
+              movies={favorites}
+              fetchFavorites={fetchFavorites}
+              favorites={favorites}
+            />
           ) : null}
         </div>
       </div>

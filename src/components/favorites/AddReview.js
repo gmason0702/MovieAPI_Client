@@ -24,7 +24,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddReview = ({ movies, token, favorite, id }) => {
+const AddReview = ({
+  movies,
+  token,
+  favorite,
+  id,
+  fetchFavorites,
+  favorites,
+}) => {
   const classes = useStyles();
   const [value, setValue] = React.useState("");
   const [review, setReview] = useState("");
@@ -50,6 +57,7 @@ const AddReview = ({ movies, token, favorite, id }) => {
         console.log(json);
         setReview("");
         setRating(0);
+        fetchFavorites();
       });
   };
 
@@ -77,7 +85,6 @@ const AddReview = ({ movies, token, favorite, id }) => {
           </div>
           <div className={classes.Rating}>
             <Rating
-              name="half-rating"
               defaultValue={2}
               size="large"
               onChange={(e) => setRating(e.target.value)}
@@ -88,6 +95,9 @@ const AddReview = ({ movies, token, favorite, id }) => {
             className={classes.ReviewButton}
             type="Submit"
             variant="contained"
+            onClick={() => {
+              alert("Review added!");
+            }}
           >
             Leave Review
           </Button>
