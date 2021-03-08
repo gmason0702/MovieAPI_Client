@@ -94,7 +94,7 @@ const MovieList = ({ movies, handleFavoritesClick }) => {
             <Link href={`/movie/${movie.id}`}></Link>
           </Typography>
           <CardMedia
-            movieId={movie.id}
+            movieId={movie.id && movie.id}
             className={classes.media}
             image={movie.poster_path && `${IMAGE_URL}w500${movie.poster_path}`}
             title={movie.title}

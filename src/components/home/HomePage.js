@@ -69,11 +69,11 @@ const HomePage = ({ logout, token }) => {
           review: review,
           personalRating: rating,
           movieId: movie.id,
-          movieTitle: movie.title,
+          title: movie.title,
           overview: movie.overview,
-          posterPath: movie.poster_path,
-          releaseDate: movie.release_date,
-          voteAverage: movie.vote_average,
+          poster_path: movie.poster_path,
+          release_date: movie.release_date,
+          vote_average: movie.vote_average,
         },
       }),
     })
@@ -85,6 +85,7 @@ const HomePage = ({ logout, token }) => {
 
         setId(json.movieId);
         console.log(json.movieId);
+        fetchFavorites();
       });
   };
 
