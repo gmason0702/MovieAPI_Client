@@ -71,7 +71,7 @@ const HomePage = ({ logout, token }) => {
           movieId: movie.id,
           movieTitle: movie.title,
           overview: movie.overview,
-          posterPath: `${IMAGE_URL}w500${movie.poster_path}`,
+          posterPath: movie.poster_path,
           releaseDate: movie.release_date,
           voteAverage: movie.vote_average,
         },
@@ -105,8 +105,7 @@ const HomePage = ({ logout, token }) => {
   };
 
   const removeFavoriteMovie = (movie, id) => {
-    console.log(movie.id);
-    console.log(favorites);
+    console.log(movie);
     const newFavoriteList = favorites.filter(
       (favorite) => favorite.id !== movie.id
     );
@@ -115,7 +114,7 @@ const HomePage = ({ logout, token }) => {
     saveToLocalStorage(newFavoriteList);
 
     console.log(newFavoriteList);
-    fetch(`${APIURL}/favorite/delete/${movie.id}`, {
+    fetch(`${APIURL}/favorite/delete/${movie.movieId}`, {
       method: "DELETE",
       headers: new Headers({
         "Content-Type": "application/json",
