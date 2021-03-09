@@ -8,8 +8,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiTextField-root": {
       margin: theme.spacing(3),
-      width: "19ch",
-      marginRight: 22,
+      width: "19.5ch",
+      marginRight: 23,
     },
     "& .MuiButton-contained": {
       marginLeft: 35,
@@ -31,9 +31,9 @@ const AddReview = ({
   id,
   fetchFavorites,
   favorites,
+  inReview,
 }) => {
   const classes = useStyles();
-  const [value, setValue] = React.useState("");
   const [review, setReview] = useState("");
   const [rating, setRating] = useState("");
 
@@ -55,8 +55,8 @@ const AddReview = ({
       .then((res) => res.json())
       .then((json) => {
         console.log(json);
-        setReview("");
-        setRating(0);
+        setReview();
+        setRating();
         fetchFavorites();
       });
   };
@@ -96,7 +96,8 @@ const AddReview = ({
             type="Submit"
             variant="contained"
             onClick={() => {
-              alert("Review added!");
+              alert(`Review added for ${movie.title}!`);
+              console.log(movie.movieId);
             }}
           >
             Leave Review

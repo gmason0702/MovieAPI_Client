@@ -7,6 +7,7 @@ import SideScroll from "../SideScroll";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AddReview from "../favorites/AddReview";
 import { IMAGE_URL } from "../../Config";
+import FetchReview from "../favorites/FetchReview";
 
 // import DisplayReview from "../favorites/DisplayReview";
 import Heading from "./Heading";
@@ -21,8 +22,8 @@ const HomePage = ({ logout, token }) => {
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
   const [movieId, setMovieId] = useState(0);
+  const [id, setId] = useState([]);
 
-  const [id, setId] = useState(0);
   const popular_url = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`;
 
   const scrollRef = SideScroll();
@@ -104,7 +105,7 @@ const HomePage = ({ logout, token }) => {
         console.log(...data);
         data.map((element) => {
           console.log(element.movieId);
-          setId(element.movieId);
+          setId(element.movieId); //this is the problem with the review
         });
         setFavorites(data);
       });
@@ -156,17 +157,26 @@ const HomePage = ({ logout, token }) => {
             handleFavoritesClick={removeFavoriteMovie}
           />
         </div>
+
         {/* <DisplayReview /> */}
         <div className="row">
           {favorites ? (
+            <>
+              <FetchReview movies={favorites} fetchFavorites={fetchFavorites} />
+            </>
+          ) : null}
+        </div>
+        <div className="row">
+          <div className="row">
             <AddReview
               id={id}
               token={token}
               movies={favorites}
               fetchFavorites={fetchFavorites}
               favorites={favorites}
+              // inReview={data.review}
             />
-          ) : null}
+          </div>
         </div>
       </div>
     </div>
